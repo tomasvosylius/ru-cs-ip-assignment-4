@@ -64,7 +64,7 @@ int number_of_days_in_month(int year, Month month)
     int days;
 
     if(month == February) days = (is_leap_year(year) ? 29 : 28);
-    else if(month == 4 || month == 6 || month == 9 || month == 11) days = 30;
+    else if(month == April || month == June || month == September || month == November) days = 30;
     else days = 31;
 
     return days;
