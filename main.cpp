@@ -72,7 +72,7 @@ int number_of_days_in_month(int year, Month month)
 /********************************************************************
     Assignment part 2: Holy days based on Easter
 ********************************************************************/
-int calculate_holy_day(int startYear, int startMonth, int startDay, int difference)
+void show_holy_day(std::string name, int startYear, int startMonth, int startDay, int difference)
 {
     /*  Function will return base of new holy day date, given start date and difference(in days):
         Return form: month*31 + days
@@ -121,7 +121,7 @@ int calculate_holy_day(int startYear, int startMonth, int startDay, int differen
             }
         }
     }
-    return (newMonth * 31) + newDay;
+    std::cout << name << ": " << startYear << "/" << newMonth << "/" << newDay << std::endl;
 }
 
 
@@ -142,43 +142,30 @@ void show_holy_days ()
     std::cout << "---------------- HOLY CHRISTIAN DAYS " << inputYear << " ----------------" << std::endl;
     std::cout << "Easter: " << inputYear << "/" << easterMonth << "/" << easterDay << std::endl;
 
-    /** Calculating other holy days.
+    /** Printing other holy days.
         Now, as we have easter month and day, we can calculate other holy days with known offsets.
     */
 
     /*  Carnival
         We know, that Carnival is 7 weeks before Easter, ending on Tuesday (we know that Easter is always on Sunday)
     */
-    base        = calculate_holy_day(inputYear, easterMonth, easterDay, -47);
-    holyMonth   = base / 31;
-    holyDay     = (base % 31);
-
-    std::cout << "Carnival: " << inputYear << "/" << holyMonth << "/" << holyDay << std::endl;
+    show_holy_day("Carnival", inputYear, easterMonth, easterDay, -47);
 
     /*  Good Friday
         This is Friday before Easter, so we have to subtract 2 days from Easter day.
     */
-    base        = calculate_holy_day(inputYear, easterMonth, easterDay, -2);
-    holyMonth   = base / 31;
-    holyDay     = (base % 31);
-    std::cout << "Good Friday: " << inputYear << "/" << holyMonth << "/" << holyDay << std::endl;
+    show_holy_day("Good Friday", inputYear, easterMonth, easterDay, -2);
 
 
     /*  Ascension Day
         This is happening 10 days before Whitsuntide, which is 49 days after Easter. Hence it is on 39th day after Easter.
     */
-    base        = calculate_holy_day(inputYear, easterMonth, easterDay, 39);
-    holyMonth   = base / 31;
-    holyDay     = (base % 31);
-    std::cout << "Ascension Day: " << inputYear << "/" << holyMonth << "/" << holyDay << std::endl;
+    show_holy_day("Ascension Day", inputYear, easterMonth, easterDay, 39);
 
     /*  Whitsuntide
         This is happening 49 days after Easter.
     */
-    base        = calculate_holy_day(inputYear, easterMonth, easterDay, 49);
-    holyMonth   = base / 31;
-    holyDay     = (base % 31);
-    std::cout << "Whitsuntide Day: " << inputYear << "/" << holyMonth << "/" << holyDay << std::endl;
+    show_holy_day("Whitsuntide", inputYear, easterMonth, easterDay, 49);
 
     // Ending print
     std::cout << "----------------------------------------------------------" << std::endl;
