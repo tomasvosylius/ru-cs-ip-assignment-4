@@ -72,18 +72,10 @@ int number_of_days_in_month(int year, Month month)
 /********************************************************************
     Assignment part 2: Holy days based on Easter
 ********************************************************************/
-int base_month(int base)
-{
-    return (base / 31);
-}
-int base_day(int base)
-{
-    return (base % 31) + 1;
-}
+
 void show_holy_days ()
 {
-    int inputYear   = 0,
-        base        = 0;
+    int inputYear   = 0;
 
     std::cout << "Input desired year:" << std::endl;
     std::cin >> inputYear;
