@@ -155,11 +155,11 @@ void show_holy_days ()
     while(diffDays --> 0)
     {
         holyDay ++ ;
-        if(holyDay >= number_of_days_in_month(inputYear, static_cast<Month>(holyMonth)))
+        if(holyDay > number_of_days_in_month(inputYear, static_cast<Month>(holyMonth)))
         {
-            // We went over that month`s days, so move to (month+1), and start from day 0
+            // We went over that month`s days, so move to (month+1), and start from day 1
             holyMonth ++ ;
-            holyDay = 0; // Month changed, so does we reset days to 0
+            holyDay = 1; // Month changed, so does we reset days to 1
         }
     }
     std::cout << "Ascension Day: " << inputYear << "/" << holyMonth << "/" << holyDay << std::endl;
@@ -173,11 +173,11 @@ void show_holy_days ()
     while(diffDays --> 0)
     {
         holyDay ++ ;
-        if(holyDay >= number_of_days_in_month(inputYear, static_cast<Month>(holyMonth)))
+        if(holyDay > number_of_days_in_month(inputYear, static_cast<Month>(holyMonth)))
         {
-            // We went over that month`s days, so move to (month+1), and start from day 0
+            // We went over that month`s days, so move to (month+1), and start from day 1
             holyMonth ++ ;
-            holyDay = 0; // Month changed, so does we reset days to 0
+            holyDay = 1; // Month changed, so does we reset days to 1
         }
     }
     std::cout << "Whitsuntide Day: " << inputYear << "/" << holyMonth << "/" << holyDay << std::endl;
