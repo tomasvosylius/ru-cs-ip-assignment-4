@@ -1,7 +1,5 @@
 #include <iostream>
 
-using namespace std;
-
 // Student name: Tomas Vosylius / 1042957
 
 enum Month
@@ -10,8 +8,7 @@ enum Month
     July, August, September, October, November, December
 };
 
-Create function for calculating difference between holy days
-Improve effectiveness by creating function for calculating dates of holydays instead of writing same code.
+
 
 
 int easter_base(int year)
@@ -193,7 +190,7 @@ int main()
 
         std::cout << "Enter C to continue, anything else will exit the program:";
         std::cin >> command;
-        std::cout << endl;
+        std::cout << std::endl;
     }
     return 0;
 }
