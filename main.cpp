@@ -72,6 +72,31 @@ int number_of_days_in_month(int year, Month month)
 /********************************************************************
     Assignment part 2: Holy days based on Easter
 ********************************************************************/
+void print_month_name(Month month)
+{
+    switch(month)
+    {
+        case January: std::cout << "January"; break;
+        case February: std::cout << "February"; break;
+        case March: std::cout << "March"; break;
+        case April: std::cout << "April"; break;
+        case May: std::cout << "May"; break;
+        case June: std::cout << "June"; break;
+        case July: std::cout << "July"; break;
+        case August: std::cout << "August"; break;
+        case September: std::cout << "September"; break;
+        case October: std::cout << "October"; break;
+        case November: std::cout << "November"; break;
+        case December: std::cout << "December"; break;
+        default: std::cout << "Error in getting month name " << month; break;
+    }
+}
+void print_holy_date(std::string name,int year, Month month, int day)
+{
+    std::cout << name << ": " << year << " ";
+    print_month_name(month);
+    std::cout << " " << day << std::endl;
+}
 void show_holy_day(std::string name, int startYear, int startMonth, int startDay, int difference)
 {
     /*  Function will return base of new holy day date, given start date and difference(in days):
@@ -81,8 +106,8 @@ void show_holy_day(std::string name, int startYear, int startMonth, int startDay
         month = base / 31
         day = (base % 31) + 1
     */
-    int newMonth    = startMonth,
-        newDay      = startDay;
+    int holyMonth   = startMonth,
+        holyDay     = startDay;
     bool adding     = (difference > 0); // If difference is positive, we are adding days. Otherwise, we are subtracting.
 
     /*  We know whether we are subtracting or adding, so we can invert negative to positive now.
@@ -96,32 +121,32 @@ void show_holy_day(std::string name, int startYear, int startMonth, int startDay
         {
             /*  If difference is negative, we are subtracting days (from Easter date in this assignment)
             */
-            newDay--;
-            if(newDay <= 0)
+            holyDay--;
+            if(holyDay <= 0)
             {
                 // We subtracted entire month (or what has left of it), so move to (month-1), and start from last day of that month.
-                newMonth -- ;
-                /*  We could check if(newMonth <= 0) and subtract 1 from current year in loop (also would be newMonth = 12)
+                holyMonth -- ;
+                /*  We could check if(holyMonth <= 0) and subtract 1 from current year in loop (also would be holyMonth = 12)
                     But we don't have to take care of this, since all holy days are on the same year.
                     It is also impossible for year to change, because Easter is in spring and max difference is -49 and +49 days.
                 */
-                newDay = number_of_days_in_month(startYear, static_cast<Month>(newMonth)); // Month changed, so does number of days in month.
+                holyDay = number_of_days_in_month(startYear, static_cast<Month>(holyMonth)); // Month changed, so does number of days in month.
             }
         }
         else
         {
             /*  Difference was positive, so adding = true. Now we are adding days (to Easter date in this assignment)
             */
-            newDay++;
-            if(newDay > number_of_days_in_month(startYear, static_cast<Month>(newMonth)))
+            holyDay++;
+            if(holyDay > number_of_days_in_month(startYear, static_cast<Month>(holyMonth)))
             {
                 // We went over that month`s days, so move to (month+1), and start from day 1
-                newMonth ++ ;
-                newDay = 1; // Month changed, so does we reset days to 1
+                holyMonth ++ ;
+                holyDay = 1; // Month changed, so does we reset days to 1
             }
         }
     }
-    std::cout << name << ": " << startYear << "/" << newMonth << "/" << newDay << std::endl;
+    print_holy_date(name, startYear, static_cast<Month>(holyMonth), holyDay);
 }
 
 
@@ -140,7 +165,8 @@ void show_holy_days ()
 
     std::cout << "----------------------------------------------------------" << std::endl;
     std::cout << "---------------- HOLY CHRISTIAN DAYS " << inputYear << " ----------------" << std::endl;
-    std::cout << "Easter: " << inputYear << "/" << easterMonth << "/" << easterDay << std::endl;
+
+    print_holy_date("Easter", inputYear, static_cast<Month>(easterMonth), easterDay);
 
     /** Printing other holy days.
         Now, as we have easter month and day, we can calculate other holy days with known offsets.
